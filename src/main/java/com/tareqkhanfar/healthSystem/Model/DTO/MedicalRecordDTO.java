@@ -27,27 +27,7 @@ public class MedicalRecordDTO {
     @JsonBackReference
     private PatientDTO patient;
 
-    public static List<MedicalRecordDTO> toDTOList(List<MedicalRecord> medicalRecords) {
-   List<MedicalRecordDTO> list = new LinkedList<>() ;
-   for (MedicalRecord medicalRecord : medicalRecords) {
-       list.add(MedicalRecordDTO.toDTO(medicalRecord));
-   }
 
-   return list ;
-    }
-    public static MedicalRecordDTO toDTO(MedicalRecord entity) {
-        return MedicalRecordDTO.builder()
-                .recordId(entity.getRecordId())
-                .medications(entity.getMedications())
-                .labResult(entity.getLabResult())
-                .diagnosis(entity.getDiagnosis())
-                .visitDate(entity.getVisitDate())
-                .createdBy(entity.getCreatedBY())
-                .symptoms(entity.getSymptoms())
-                .treatmentPlan(entity.getTreamtmentPlan())
-                .nextAppointment(entity.getNextAppoinment())
-                .build();
-    }
 
 
     // Add constructor and any additional methods as needed

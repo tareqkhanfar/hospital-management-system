@@ -28,28 +28,9 @@ public class AppointmentDTO {
     @JsonManagedReference
     private PatientDTO patient;
 
-    public static List<AppointmentDTO> toDTOList(List<Appointment> appointmentList) {
 
-        List<AppointmentDTO> list = new LinkedList<>() ;
-
-        for (Appointment appointment : appointmentList) {
-            list.add(AppointmentDTO.toDTO(appointment)) ;
-        }
-        return list;
-    }
 
 
     // Add constructor and any additional methods as needed
-    public static AppointmentDTO toDTO(Appointment entity) {
-        return AppointmentDTO.builder()
-                .id(entity.getId())
-                .date(entity.getDate())
-                .purpose(entity.getPurpose())
-                .duration(entity.getDuration())
-                .isCancelled(entity.getIsCancelled())
-                .roomNumber(entity.getRoomNumber())
-                .note(entity.getNote())
-                .build();
-    }
 
 }

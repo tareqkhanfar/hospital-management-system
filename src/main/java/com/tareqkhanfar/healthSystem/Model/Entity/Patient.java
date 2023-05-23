@@ -3,6 +3,7 @@ package com.tareqkhanfar.healthSystem.Model.Entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class Patient extends Person{
     @Id
-    @Column(name = "Patient_id")
+    @Column(name = "patient_id")
     private Integer id ;
     @Column(name = "medical_History")
     private String medicalHistory ;

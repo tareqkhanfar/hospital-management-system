@@ -37,22 +37,5 @@ public class DoctorDTO extends PersonDTO {
     }
 
     // Add constructor and any additional methods as needed
-    public static DoctorDTO toDTO(Doctor entity) {
-        return DoctorDTO.builder()
-                .doctor_id(entity.getId())
-                .name(entity.getName())
-                .phone(entity.getPhone())
-                .age(entity.getAge())
-                .address(entity.getAddress())
-                .email(entity.getEmail())
-                .gender(entity.getGender())
-                .specialization(entity.getSpecialization())
-                .qualifications(entity.getQualifications())
-                .availability(entity.getAvaliability())
-                .salary(entity.getSalary())
-                .isActive(entity.getIsActive())
-                .appointmentList(AppointmentDTO.toDTOList(entity.getAppointmentList()))
-                .build();
-    }
 
 }
