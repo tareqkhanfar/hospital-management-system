@@ -96,7 +96,6 @@ public class DoctorService {
                 .availability(entity.getAvaliability())
                 .salary(entity.getSalary())
                 .isActive(entity.getIsActive())
-                .appointmentList(appointmentService.toDTOList(entity.getAppointmentList()))
                 .build();
     }
 

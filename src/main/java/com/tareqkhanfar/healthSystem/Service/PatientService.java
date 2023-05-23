@@ -83,8 +83,6 @@ public class PatientService {
     }
 
     private  PatientDTO toDTO(Patient entity) {
-        System.out.println("hello 4 "+medicalService.toDTOList(entity.getMedicalRecords()).toString());
-        System.out.println("hello 5 "+appointmentService.toDTOList(entity.getAppointmentList()).toString());
 
         return PatientDTO.builder()
                 .patient_id(entity.getId())
@@ -99,8 +97,6 @@ public class PatientService {
                 .ongoingTreatments(entity.getOngoingTreatments())
                 .bloodType(entity.getBloodType())
                 .emergencyContact(entity.getEmergencyContact())
-                .medicalRecords(medicalService.toDTOList(entity.getMedicalRecords()))
-                .appointmentList(appointmentService.toDTOList(entity.getAppointmentList()))
                 .build();
 
     }

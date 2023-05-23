@@ -30,7 +30,7 @@ public class PatientController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity createCategory(@Valid @RequestBody PatientDTO patientDTO  ) {
+    public ResponseEntity createCategory(@Valid @RequestBody PatientDTO patientDTO   ) {
         System.out.println(patientDTO.getId());
         this.patientService.SavePatient(patientDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(patientDTO);

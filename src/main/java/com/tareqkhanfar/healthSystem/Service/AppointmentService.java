@@ -56,8 +56,8 @@ public class AppointmentService {
             existingAppointment.setRoomNumber(appointmentDTO.getRoomNumber());
             existingAppointment.setNote(appointmentDTO.getNote());
 
-            existingAppointment.setDoctor_id_fk(appointmentDTO.getDoctor().getId());
-            existingAppointment.setPatient_id_fk(appointmentDTO.getPatient().getId());
+            existingAppointment.setDoctor_id_fk(appointmentDTO.getDoctor_id());
+            existingAppointment.setPatient_id_fk(appointmentDTO.getPatient_id());
 
             // Save the updated appointment entity
             return toDTO(this.appointmentRepo.save(existingAppointment));
@@ -95,6 +95,9 @@ public class AppointmentService {
 
         List<AppointmentDTO> list = new LinkedList<>() ;
 
+        if (appointmentList == null ) {
+            return null ;
+        }
         for (Appointment appointment : appointmentList) {
             list.add(toDTO(appointment)) ;
         }
@@ -111,8 +114,8 @@ public class AppointmentService {
         appointment.setIsCancelled(appointmentDTO.getIsCancelled());
         appointment.setRoomNumber(appointmentDTO.getRoomNumber());
         appointment.setNote(appointmentDTO.getNote());
-        appointment.setPatient_id_fk(appointmentDTO.getPatient().getId());
-        appointment.setDoctor_id_fk(appointmentDTO.getDoctor().getId());
+        appointment.setPatient_id_fk(appointmentDTO.getPatient_id());
+        appointment.setDoctor_id_fk(appointmentDTO.getDoctor_id());
 
         return appointment;
     }

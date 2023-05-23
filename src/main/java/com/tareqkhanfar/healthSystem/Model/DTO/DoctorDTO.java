@@ -22,18 +22,17 @@ public class DoctorDTO extends PersonDTO {
 
     // Add any additional fields as needed
 
-    @JsonManagedReference
-    private List<AppointmentDTO> appointmentList;
+//    @JsonManagedReference
+//    private List<AppointmentDTO> appointmentList;
 
     @Builder
-    public DoctorDTO(Integer doctor_id, String name, String phone, Byte age, String address, String email, String gender, String specialization, String qualifications, String availability, Double salary, Boolean isActive, List<AppointmentDTO> appointmentList) {
+    public DoctorDTO(Integer doctor_id, String name, String phone, Byte age, String address, String email, String gender, String specialization, String qualifications, String availability, Double salary, Boolean isActive) {
         super(doctor_id, name, phone, age, address, email, gender);
         this.specialization = specialization;
         this.qualifications = qualifications;
         this.availability = availability;
         this.salary = salary;
         this.isActive = isActive;
-        this.appointmentList = appointmentList;
     }
 
     // Add constructor and any additional methods as needed

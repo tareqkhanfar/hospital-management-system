@@ -1,16 +1,19 @@
 package com.tareqkhanfar.healthSystem.Controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.tareqkhanfar.healthSystem.Model.DTO.PatientDTO;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/test")
 public class HomeController {
 
-    @GetMapping
-    public String home() {
-        return "hello - home page ";
+    @PostMapping
+    public String home( @RequestBody PatientDTO patientDTO) {
+        return "hello - home page "+ patientDTO.getId();
     }
+
+
 }

@@ -53,7 +53,7 @@ public class MedicalService {
             // Retrieve the associated patient entity using its ID
 
             // Set the association between the medical record and the patient
-            existingMedicalRecord.setPatient_id_fk(medicalRecordDTO.getPatient().getId());
+            existingMedicalRecord.setPatient_id_fk(medicalRecordDTO.getPatient_id());
             // Save the updated medical record entity
             return this.medicalRepo.save(existingMedicalRecord);
         } else {
@@ -85,6 +85,9 @@ public class MedicalService {
     }
     public static List<MedicalRecordDTO> toDTOList(List<MedicalRecord> medicalRecords) {
         List<MedicalRecordDTO> list = new LinkedList<>() ;
+        if (medicalRecords == null){
+            return null ;
+        }
         for (MedicalRecord medicalRecord : medicalRecords) {
             list.add(toDTO(medicalRecord));
         }
@@ -111,7 +114,7 @@ public class MedicalService {
 
         // Set the association between the medical record and the patient
       //  medicalRecord.setPatient(patient);
-        medicalRecord.setPatient_id_fk(medicalRecordDTO.getPatient().getId());
+        medicalRecord.setPatient_id_fk(medicalRecordDTO.getPatient_id());
 
         return medicalRecord;
     }
