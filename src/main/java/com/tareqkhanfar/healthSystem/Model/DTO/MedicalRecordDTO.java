@@ -2,6 +2,7 @@ package com.tareqkhanfar.healthSystem.Model.DTO;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.tareqkhanfar.healthSystem.Model.Entity.MedicalRecord;
+import com.tareqkhanfar.healthSystem.Model.Entity.Patient;
 import lombok.Builder;
 import lombok.Data;
 

@@ -35,7 +35,6 @@ public class Doctor extends Person{
     private Boolean isActive;
 
 
-
     @JsonManagedReference
     @OneToMany(mappedBy = "appintment_doctor")
     private List<Appointment> appointmentList ;

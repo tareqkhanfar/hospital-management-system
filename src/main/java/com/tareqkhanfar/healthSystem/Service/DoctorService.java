@@ -22,14 +22,17 @@ public class DoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
 
+    @Autowired
+    private AppointmentService appointmentService ;
+
 
     public DoctorDTO getById(Integer id) {
-        return toDTO(doctorRepository.findById(id).get());
+        return toDTO(this.doctorRepository.findById(id).get());
     }
 
     public List<DoctorDTO> getAll() {
 
-        return toDTOList(this.doctorRepository.findAll().stream().toList()) ;
+        return toDTOList(this.doctorRepository.findAll()) ;
     }
 
     public DoctorDTO SavePatient(DoctorDTO dto){
@@ -70,16 +73,16 @@ public class DoctorService {
 
 
 
-    private static List<DoctorDTO> toDTOList(List<Doctor> enities) {
+    private  List<DoctorDTO> toDTOList(List<Doctor> enities) {
         List<DoctorDTO> list = new LinkedList<>();
-        for (Doctor patient : enities) {
-            list.add(toDTO(patient));
+        for (Doctor doctor : enities) {
+            list.add(toDTO(doctor));
         }
         return list;
     }
 
 
-    private static DoctorDTO toDTO(Doctor entity) {
+    private  DoctorDTO toDTO(Doctor entity) {
         return DoctorDTO.builder()
                 .doctor_id(entity.getId())
                 .name(entity.getName())
@@ -93,7 +96,7 @@ public class DoctorService {
                 .availability(entity.getAvaliability())
                 .salary(entity.getSalary())
                 .isActive(entity.getIsActive())
-                .appointmentList(AppointmentService.toDTOList(entity.getAppointmentList()))
+                .appointmentList(appointmentService.toDTOList(entity.getAppointmentList()))
                 .build();
     }
 

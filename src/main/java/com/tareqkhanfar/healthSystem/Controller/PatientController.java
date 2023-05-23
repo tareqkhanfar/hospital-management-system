@@ -18,7 +18,7 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
-    @GetMapping("/getByID/{id}")
+    @GetMapping("/getById/{id}")
     public PatientDTO getPatientByID (@PathVariable(name = "id")  Integer id){
       return this.patientService.getPatientByID(id);
     }
@@ -31,8 +31,7 @@ public class PatientController {
 
     @PostMapping(value = "/create")
     public ResponseEntity createCategory(@Valid @RequestBody PatientDTO patientDTO  ) {
-        System.out.println("controller: " + patientDTO.getId());
-
+        System.out.println(patientDTO.getId());
         this.patientService.SavePatient(patientDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(patientDTO);
     }

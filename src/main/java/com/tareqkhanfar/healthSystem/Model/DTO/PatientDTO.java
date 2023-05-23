@@ -21,6 +21,13 @@ public class PatientDTO extends PersonDTO {
     private String bloodType;
     private String emergencyContact;
 
+
+    @JsonManagedReference
+    private List<MedicalRecordDTO> medicalRecords;
+
+    @JsonManagedReference
+    private List<AppointmentDTO> appointmentList;
+
     @Builder
     public PatientDTO(Integer patient_id , String name, String phone, Byte age, String address, String email, String gender,
                       String medicalHistory, String allergies, String ongoingTreatments, String bloodType,
@@ -34,8 +41,8 @@ public class PatientDTO extends PersonDTO {
         this.ongoingTreatments = ongoingTreatments;
         this.bloodType = bloodType;
         this.emergencyContact = emergencyContact;
-       // this.medicalRecords = medicalRecords;
-      //  this.appointmentList = appointmentList;
+        this.medicalRecords = medicalRecords;
+        this.appointmentList = appointmentList;
     }
 
 

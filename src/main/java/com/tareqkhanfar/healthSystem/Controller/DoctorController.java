@@ -15,15 +15,18 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("doctor")
+@RequestMapping("/doctor")
 public class DoctorController {
 
+
     @Autowired
-    private DoctorService doctorService ;
+    private DoctorService doctorService;
+
+
 
 
     @GetMapping("/getById/{id}")
-    public DoctorDTO getAllDoctors (@PathVariable(name = "id") Integer id) {
+    public DoctorDTO getDoctorById (@PathVariable(name = "id") Integer id) {
 
        return  this.doctorService.getById(id);
 
@@ -33,6 +36,7 @@ public class DoctorController {
 
     @GetMapping("/getAll")
     public List<DoctorDTO> getAllDoctors (){
+        System.out.println("test");
         return this.doctorService.getAll();
     }
 

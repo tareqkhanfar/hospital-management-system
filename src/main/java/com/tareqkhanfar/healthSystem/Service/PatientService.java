@@ -18,13 +18,20 @@ public class PatientService {
     @Autowired
     private PatientRepo patientRepo ;
 
+
+    @Autowired
+    private MedicalService medicalService;
+
+    @Autowired
+    private AppointmentService appointmentService;
+
     public PatientDTO getPatientByID(Integer patient_id) {
   return  toDTO(this.patientRepo.findById(patient_id).get());
     }
 
     public List<PatientDTO> getAllPatients() {
 
-        return PatientService.toDTOList(this.patientRepo.findAll().stream().toList()) ;
+        return toDTOList(this.patientRepo.findAll()) ;
     }
 
     public PatientDTO SavePatient(PatientDTO dto){
@@ -54,7 +61,7 @@ public class PatientService {
     }
 
 
-    private static Patient convertToEntity(PatientDTO patientDTO) {
+    public static Patient convertToEntity(PatientDTO patientDTO) {
         Patient patient = new Patient();
         // Set the attributes from the DTO to the entity
         patient.setId(patientDTO.getId());
@@ -75,7 +82,10 @@ public class PatientService {
         return patient;
     }
 
-    private static PatientDTO toDTO(Patient entity) {
+    private  PatientDTO toDTO(Patient entity) {
+        System.out.println("hello 4 "+medicalService.toDTOList(entity.getMedicalRecords()).toString());
+        System.out.println("hello 5 "+appointmentService.toDTOList(entity.getAppointmentList()).toString());
+
         return PatientDTO.builder()
                 .patient_id(entity.getId())
                 .name(entity.getName())
@@ -89,16 +99,21 @@ public class PatientService {
                 .ongoingTreatments(entity.getOngoingTreatments())
                 .bloodType(entity.getBloodType())
                 .emergencyContact(entity.getEmergencyContact())
-                .medicalRecords(MedicalService.toDTOList(entity.getMedicalRecords()))
-                .appointmentList(AppointmentService.toDTOList(entity.getAppointmentList()))
+                .medicalRecords(medicalService.toDTOList(entity.getMedicalRecords()))
+                .appointmentList(appointmentService.toDTOList(entity.getAppointmentList()))
                 .build();
+
     }
 
-    private static List<PatientDTO> toDTOList (List<Patient> enities) {
+    private  List<PatientDTO> toDTOList (List<Patient> enities) {
         List<PatientDTO> list = new LinkedList<>() ;
         for (Patient patient : enities) {
-            list.add(PatientService.toDTO(patient));
+            list.add(toDTO(patient));
         }
+        System.out.println("hello 3 "+list.toString());
+
         return list ;
     }
+
+
 }

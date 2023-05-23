@@ -1,11 +1,19 @@
 package com.tareqkhanfar.healthSystem.Model.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Setter
+
+@Getter
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString
 @Entity
 @Table(name = "Medical_Record")
 public class MedicalRecord {

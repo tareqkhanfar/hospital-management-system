@@ -2,7 +2,7 @@ package com.tareqkhanfar.healthSystem.Model.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
@@ -10,8 +10,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "Patient")
-@Data
+@Setter
 
+@Getter
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString
 public class Patient extends Person{
     @Id
     @Column(name = "patient_id")
