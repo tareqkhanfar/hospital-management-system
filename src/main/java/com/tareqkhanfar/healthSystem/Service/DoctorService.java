@@ -35,7 +35,7 @@ public class DoctorService {
         return toDTOList(this.doctorRepository.findAll()) ;
     }
 
-    public DoctorDTO SavePatient(DoctorDTO dto){
+    public DoctorDTO SaveDoctor(DoctorDTO dto){
         Doctor patient  = convertToEntity(dto);
         return toDTO(this.doctorRepository.save(patient));
     }
@@ -65,11 +65,16 @@ public class DoctorService {
         }
     }
 
-    public void deleteDoctor(Integer integer) {
-
-        this.doctorRepository.deleteById(integer) ;
-
+    public boolean deleteDoctor(Integer id) {
+        Optional<Doctor> optionalDoctor = doctorRepository.findById(id);
+        if (optionalDoctor.isPresent()) {
+            doctorRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
 
 

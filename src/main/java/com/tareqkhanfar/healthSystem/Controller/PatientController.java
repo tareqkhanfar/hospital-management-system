@@ -18,36 +18,46 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
+
     @GetMapping("/getById/{id}")
-    public PatientDTO getPatientByID (@PathVariable(name = "id")  Integer id){
-      return this.patientService.getPatientByID(id);
+    public ResponseEntity<PatientDTO> getPatientByID(@PathVariable(name = "id") Integer id) {
+        PatientDTO patient = this.patientService.getPatientByID(id);
+        if (patient != null) {
+            return ResponseEntity.ok(patient);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-
     @GetMapping("/getAll")
-    public List<PatientDTO> getAllPatients (){
-        return this.patientService.getAllPatients();
+    public ResponseEntity<List<PatientDTO>> getAllPatients() {
+        List<PatientDTO> patients = this.patientService.getAllPatients();
+        return ResponseEntity.ok(patients);
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity createCategory(@Valid @RequestBody PatientDTO patientDTO   ) {
-        System.out.println(patientDTO.getId());
-        this.patientService.SavePatient(patientDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(patientDTO);
+    public ResponseEntity<PatientDTO> createCategory(@Valid @RequestBody PatientDTO patientDTO) {
+        PatientDTO createdPatient = this.patientService.SavePatient(patientDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPatient);
     }
-
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updatePatient(@Valid @RequestBody PatientDTO patientDTO , @PathVariable (name = "id") Integer id){
-        this.patientService.updatePatient(patientDTO , id);
-        return ResponseEntity.status(HttpStatus.CREATED).body(patientDTO);
+    public ResponseEntity<PatientDTO> updatePatient(@Valid @RequestBody PatientDTO patientDTO, @PathVariable(name = "id") Integer id) {
+        PatientDTO updatedPatient = this.patientService.updatePatient(patientDTO, id);
+        if (updatedPatient != null) {
+            return ResponseEntity.ok(updatedPatient);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
 
     @DeleteMapping("/delete/{id}")
-    public void deletePatient(@PathVariable(name = "id") Integer integer) {
-        this.patientService.deletePatient(integer);
+    public ResponseEntity<Void> deletePatient(@PathVariable(name = "id") Integer id) {
+        boolean isDeleted = this.patientService.deletePatient(id);
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
-
 }

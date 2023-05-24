@@ -66,12 +66,15 @@ public class AppointmentService {
         }
     }
 
-    public void deleteAppointment(Integer integer) {
 
-        this.appointmentRepo.deleteById(integer) ;
-
+    public boolean deleteAppointment(Integer id) {
+        Optional<Appointment> optionalAppointment = appointmentRepo.findById(id);
+        if (optionalAppointment.isPresent()) {
+            appointmentRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
-
 
 
 

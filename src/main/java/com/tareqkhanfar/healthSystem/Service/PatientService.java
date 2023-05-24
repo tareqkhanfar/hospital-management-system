@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -54,11 +55,16 @@ public class PatientService {
         return toDTO(this.patientRepo.save(patient));
     }
 
-    public void deletePatient(Integer integer) {
-
-           this.patientRepo.deleteById(integer) ;
-
+    public boolean deletePatient(Integer id) {
+        Optional<Patient> optionalPatient = this.patientRepo.findById(id);
+        if (optionalPatient.isPresent()) {
+            this.patientRepo.deleteById(id);
+            return true; // Deletion successful
+        } else {
+            return false; // Patient not found or deletion failed
+        }
     }
+
 
 
     public static Patient convertToEntity(PatientDTO patientDTO) {

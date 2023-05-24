@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/")
 public class HomeController {
 
-    @PostMapping
-    public String home( @RequestBody PatientDTO patientDTO) {
-        return "hello - home page "+ patientDTO.getId();
+
+    public String home( ) {
+        return "hello - home page ";
     }
 
 

@@ -1,10 +1,6 @@
 package com.tareqkhanfar.healthSystem.Controller;
 
-
-import com.tareqkhanfar.healthSystem.Model.DTO.AppointmentDTO;
 import com.tareqkhanfar.healthSystem.Model.DTO.DoctorDTO;
-import com.tareqkhanfar.healthSystem.Model.DTO.PatientDTO;
-import com.tareqkhanfar.healthSystem.Model.Entity.Doctor;
 import com.tareqkhanfar.healthSystem.Service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,50 +13,48 @@ import java.util.List;
 @RestController
 @RequestMapping("/doctor")
 public class DoctorController {
-
-
     @Autowired
     private DoctorService doctorService;
 
-
-
-
     @GetMapping("/getById/{id}")
-    public DoctorDTO getDoctorById (@PathVariable(name = "id") Integer id) {
-
-       return  this.doctorService.getById(id);
-
+    public ResponseEntity<DoctorDTO> getDoctorById(@PathVariable(name = "id") Integer id) {
+        DoctorDTO doctor = doctorService.getById(id);
+        if (doctor != null) {
+            return ResponseEntity.ok(doctor);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
-
 
     @GetMapping("/getAll")
-    public List<DoctorDTO> getAllDoctors (){
-        System.out.println("test");
-        return this.doctorService.getAll();
+    public List<DoctorDTO> getAllDoctors() {
+        return doctorService.getAll();
     }
 
-    @PostMapping(value = "/create")
-    public ResponseEntity createCategory(@Valid @RequestBody DoctorDTO doctorDTO  ) {
-
-        this.doctorService.SavePatient(doctorDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(doctorDTO);
+    @PostMapping("/create")
+    public ResponseEntity<DoctorDTO> createDoctor(@Valid @RequestBody DoctorDTO doctorDTO) {
+        DoctorDTO createdDoctor = doctorService.SaveDoctor(doctorDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdDoctor);
     }
-
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updateDoctor(@Valid @RequestBody DoctorDTO doctorDTO , @PathVariable (name = "id") Integer id){
-        this.doctorService.updateDoctor(id , doctorDTO );
-        return ResponseEntity.status(HttpStatus.CREATED).body(doctorDTO);
+    public ResponseEntity<DoctorDTO> updateDoctor(@PathVariable(name = "id") Integer id, @Valid @RequestBody DoctorDTO doctorDTO) {
+        DoctorDTO updatedDoctor = doctorService.updateDoctor(id, doctorDTO);
+        if (updatedDoctor != null) {
+            return ResponseEntity.ok(updatedDoctor);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
 
     @DeleteMapping("/delete/{id}")
-    public void deletePatient(@PathVariable(name = "id") Integer integer) {
-        this.doctorService.deleteDoctor(integer);
+    public ResponseEntity<Void> deleteDoctor(@PathVariable(name = "id") Integer id) {
+        boolean deleted = doctorService.deleteDoctor(id);
+        if (deleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
-
-
-
 }
+
