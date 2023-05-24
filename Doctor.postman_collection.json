@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "9708ed5f-23dd-413a-8940-3d41c3fc7056",
+		"name": "Doctor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 60,\r\n  \"name\": \"John Doe\",\r\n  \"phone\": \"1234567890\",\r\n  \"age\": 40,\r\n  \"address\": \"456 Main St\",\r\n  \"email\": \"john@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"specialization\": \"Cardiology\",\r\n  \"qualifications\": \"MBBS, MD\",\r\n  \"availability\": \"Mon-Fri, 9AM-5PM\",\r\n  \"salary\": 5000.0,\r\n  \"isActive\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/doctor/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctor",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete doctor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/doctor/delete/60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctor",
+						"delete",
+						"60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all doctors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/doctor/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctor",
+						"getAll"
+					]
+				},
+				"description": "to get all patient with medical file and appointments"
+			},
+			"response": []
+		},
+		{
+			"name": "get doctor by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/doctor/getById/60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctor",
+						"getById",
+						"60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update doctor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2,\r\n  \"name\": \"Ali\",\r\n  \"age\": 30,\r\n  \"gender\": \"Male\",\r\n  \"address\": \"123 Main St\",\r\n  \"phone\": \"1234567890\",\r\n  \"email\": \"john@example.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/patient/update/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patient",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

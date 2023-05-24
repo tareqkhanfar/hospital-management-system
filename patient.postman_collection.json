@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "9a44f0a1-dd8a-4d07-bd89-10c993a89461",
+		"name": "patient",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1345,\r\n  \"name\": \"John Doe\",\r\n  \"phone\": \"1234567890\",\r\n  \"age\": 30,\r\n  \"address\": \"123 Main St\",\r\n  \"email\": \"john@example.com\",\r\n  \"gender\": \"Male\",\r\n  \"medicalHistory\": \"Previous surgeries\",\r\n  \"allergies\": \"Pollen\",\r\n  \"ongoingTreatments\": \"None\",\r\n  \"bloodType\": \"O+\",\r\n  \"emergencyContact\": \"Jane Doe\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/patient/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patient",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/patient/delete/22",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patient",
+						"delete",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/patient/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patient",
+						"getAll"
+					]
+				},
+				"description": "to get all patient with medical file and appointments"
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/patient/getById/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patient",
+						"getById",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2,\r\n  \"name\": \"Ali\",\r\n  \"age\": 30,\r\n  \"gender\": \"Male\",\r\n  \"address\": \"123 Main St\",\r\n  \"phone\": \"1234567890\",\r\n  \"email\": \"john@example.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/patient/update/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patient",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
